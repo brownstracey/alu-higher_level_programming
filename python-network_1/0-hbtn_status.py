@@ -1,18 +1,26 @@
 #!/usr/bin/python3
-"""Documented by Lsblack"""
+"""
+0-hbtn_status.py
+This script fetches the URL https://alu-intranet.hbtn.io/status using urllib
+and displays the response body in a specified format.
+
+It specifically:
+- Fetches the response from the provided URL
+- Prints the type of the response content
+- Prints the raw content of the response
+- Prints the UTF-8 decoded content of the response
+
 import urllib.request
 
-url = 'https://intranet.hbtn.io/status'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    '\n    AppleWebKit/537.36 (KHTML, like Gecko)'
-    '\n    Chrome/99.0.4844.84 Safari/537.36',
-}
+# URL to fetch
+url = 'https://alu-intranet.hbtn.io/status'
 
-req = urllib.request.Request(url, headers=headers)
-with urllib.request.urlopen(req) as response:
-    content = response.read()
+# Using the with statement to open the URL
+with urllib.request.urlopen(url) as response:
+    body = response.read()  # Read the response content
+
+    # Print details about the response body
     print("Body response:")
-    print("\t- type:", type(content))
-    print("\t- content:", content)
-    print("\t- utf8 content:", content.decode("utf-8"))
+    print(f"\t- type: {type(body)}")  # Print the type of the body content
+    print(f"\t- content: {body}")  # Print the raw bytes content
+    print(f"\t- utf8 content: {body.decode('utf-8')}")  # Print the UTF-8 decoded content
